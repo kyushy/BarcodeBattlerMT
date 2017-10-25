@@ -1,17 +1,16 @@
-package com.mbds.barcodebattlermt;
+package com.mbds.barcodebattlermt.activities;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+
+import com.mbds.barcodebattlermt.GameActivity;
+import com.mbds.barcodebattlermt.R;
 
 public class MainActivity extends AppCompatActivity {
 

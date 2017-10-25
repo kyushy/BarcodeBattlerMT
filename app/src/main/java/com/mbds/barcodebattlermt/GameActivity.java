@@ -3,6 +3,8 @@ package com.mbds.barcodebattlermt;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.mbds.barcodebattlermt.R;
+
 public class GameActivity extends AppCompatActivity {
 
     @Override
