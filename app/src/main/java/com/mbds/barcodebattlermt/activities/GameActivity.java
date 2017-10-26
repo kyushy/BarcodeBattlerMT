@@ -1,5 +1,6 @@
 package com.mbds.barcodebattlermt.activities;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.fragments.BattleListFragment;
+import com.mbds.barcodebattlermt.fragments.ChoiceFightFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +30,7 @@ public class GameActivity extends AppCompatActivity  {
 
     private TextView mTextMessage;
     private FragmentManager manager;
-    private BattleListFragment fragment;
+    private Fragment fragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -49,6 +51,8 @@ public class GameActivity extends AppCompatActivity  {
                     return true;
                 case R.id.navigation_fight:
                     mTextMessage.setText(R.string.title_fight);
+                    fragment = ChoiceFightFragment.newInstance("", "");
+                    manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
                     return true;
                 case R.id.navigation_monsters:
                     mTextMessage.setText(R.string.title_monsters);
