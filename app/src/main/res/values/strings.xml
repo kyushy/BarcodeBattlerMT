@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BarcodeBattlerMT</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_fight">Fight</string>
+    <string name="title_monsters">Monsters</string>
+    <string name="title_gears">Gears</string>
 </resources>

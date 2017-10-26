@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_scan"
+        android:icon="@drawable/scan"
+        android:title="@string/title_scan" />
+
+    <item
+        android:id="@+id/navigation_fight"
+        android:icon="@drawable/fight"
+        android:title="@string/title_fight" />
+
+    <item
+        android:id="@+id/navigation_gears"
+        android:icon="@drawable/gears"
+        android:title="@string/title_gears" />
+
+    <item
+        android:id="@+id/navigation_monsters"
+        android:icon="@drawable/monsters"
+        android:title="@string/title_monsters" />
+
+</menu>

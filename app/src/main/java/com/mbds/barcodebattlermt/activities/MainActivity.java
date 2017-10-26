@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.mbds.barcodebattlermt.GameActivity;
 import com.mbds.barcodebattlermt.R;
 
 public class MainActivity extends AppCompatActivity {
