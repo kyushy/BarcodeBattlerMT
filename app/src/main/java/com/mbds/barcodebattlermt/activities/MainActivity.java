@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         layout = (RelativeLayout) findViewById(R.id.main_rlayout);
         blink();
@@ -33,20 +33,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void blink(){
+    private void blink() {
         final Handler handler = new Handler();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 int timeToBlink = 1000;
-                try{Thread.sleep(timeToBlink);}catch (Exception e) {}
+                try {
+                    Thread.sleep(timeToBlink);
+                } catch (Exception e) {
+                }
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
                         ImageView txt = (ImageView) findViewById(R.id.usage);
-                        if(txt.getVisibility() == View.VISIBLE){
+                        if (txt.getVisibility() == View.VISIBLE) {
                             txt.setVisibility(View.INVISIBLE);
-                        }else{
+                        } else {
                             txt.setVisibility(View.VISIBLE);
                         }
                         blink();

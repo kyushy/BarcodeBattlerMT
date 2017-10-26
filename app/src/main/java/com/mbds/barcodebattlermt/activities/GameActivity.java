@@ -18,6 +18,9 @@ import com.google.zxing.integration.android.IntentResult;
 import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.fragments.BattleListFragment;
 import com.mbds.barcodebattlermt.fragments.ChoiceFightFragment;
+import com.mbds.barcodebattlermt.controler.Controler;
+import com.mbds.barcodebattlermt.model.Battler;
+import com.mbds.barcodebattlermt.model.GenFromBarCode;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +29,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class GameActivity extends AppCompatActivity  {
+// UID pout bt : 2,5
+public class GameActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     private FragmentManager manager;
@@ -56,7 +60,7 @@ public class GameActivity extends AppCompatActivity  {
                     return true;
                 case R.id.navigation_monsters:
                     mTextMessage.setText(R.string.title_monsters);
-                    fragment = BattleListFragment.newInstance("","");
+                    fragment = BattleListFragment.newInstance("", "");
                     manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
                     return true;
                 case R.id.navigation_gears:
@@ -85,11 +89,13 @@ public class GameActivity extends AppCompatActivity  {
             if (result.getContents() == null) {
                 Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
             } else {
-                try {
-                    JSONObject obj = new JSONObject(result.getContents());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                String r = result.getContents();
+                if (r.length() < 8) {
+                    throw new IllegalArgumentException("Barcode with less than 8 characters.");
+                } else {
+                    String bar = r.substring(Math.max(0, r.length() - 8));
+                    Battler g = (Battler) Controler.generate(bar);
+                    Log.v("Test", g.toString());
                 }
             }
         } else {
