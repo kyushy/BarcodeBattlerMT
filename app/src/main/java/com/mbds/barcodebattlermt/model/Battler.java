@@ -1,11 +1,13 @@
 package com.mbds.barcodebattlermt.model;
 
+import android.annotation.SuppressLint;
 import android.os.Parcel;
 
 /**
  * Created by Fred on 25/10/2017.
  */
 
+@SuppressLint("ParcelCreator")
 public class Battler extends GenFromBarCode {
 
     private int level = 1;
