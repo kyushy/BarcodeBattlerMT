@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_scan:
-                    mTextMessage.setText(R.string.title_fight);
+                    mTextMessage.setText(R.string.title_scan);
                     IntentIntegrator barScan = new IntentIntegrator(GameActivity.this);
                     Collection<String> s = new ArrayList<>();
                     s.addAll(IntentIntegrator.PRODUCT_CODE_TYPES);
