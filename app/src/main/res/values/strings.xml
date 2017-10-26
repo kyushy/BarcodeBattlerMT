@@ -6,4 +6,7 @@
     <string name="title_fight">Fight</string>
     <string name="title_monsters">Monsters</string>
     <string name="title_gears">Gears</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
