@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/id_battler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:textSize="25sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/atk_battler"
+        android:layout_toStartOf="@+id/atk_battler"
+        android:src="@drawable/hp_icon" />
+
+    <TextView
+        android:id="@+id/hp_battler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/id_battler"
+        android:layout_alignBottom="@+id/id_battler"
+        android:layout_marginStart="96dp"
+        android:layout_toEndOf="@+id/id_battler"
+        android:text="HP"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/atk_battler"
+        android:layout_toStartOf="@+id/atk_battler"
+        android:src="@drawable/atk_icon" />
+
+    <TextView
+        android:id="@+id/atk_battler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/hp_battler"
+        android:layout_below="@+id/hp_battler"
+        android:layout_marginTop="14dp"
+        android:text="ATK"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/def_battler"
+        android:layout_marginStart="43dp"
+        android:layout_toEndOf="@+id/atk_battler"
+        android:src="@drawable/def_icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/atk_battler"
+        android:layout_alignBottom="@+id/atk_battler"
+        android:layout_marginStart="68dp"
+        android:layout_toEndOf="@+id/atk_battler"
+        android:text="DEF"
+        android:textSize="25sp"
+        android:id="@+id/def_battler" />
+
+</RelativeLayout>

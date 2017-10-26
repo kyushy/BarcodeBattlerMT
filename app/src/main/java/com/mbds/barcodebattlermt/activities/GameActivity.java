@@ -46,6 +46,8 @@ public class GameActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_monsters:
                     mTextMessage.setText(R.string.title_monsters);
+                    Intent intent = new Intent(GameActivity.this, BattlerListActivity.class);
+                    startActivity(intent);
                     return true;
                 case R.id.navigation_gears:
                     mTextMessage.setText(R.string.title_gears);
