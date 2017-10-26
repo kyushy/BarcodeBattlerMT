@@ -11,6 +11,7 @@ public class Battler implements GenFromBarCode {
     private int atk;
     private int def;
     private int type;
+    private int level = 1;
 
     public Battler() {
     }
@@ -60,6 +61,21 @@ public class Battler implements GenFromBarCode {
         this.def = def;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     @Override
     public String toString() {
