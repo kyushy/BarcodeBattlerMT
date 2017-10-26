@@ -1,72 +1,24 @@
 package com.mbds.barcodebattlermt.model;
 
+import android.os.Parcel;
+
 /**
  * Created by Fred on 25/10/2017.
  */
 
-public class Battler implements GenFromBarCode {
+public class Battler extends GenFromBarCode {
 
-    private int id;
-    private int hp;
-    private int atk;
-    private int def;
-    private int type;
     private int level = 1;
 
     public Battler() {
     }
 
     public Battler(int hp, int atk, int def) {
-        this.hp = hp;
-        this.atk = atk;
-        this.def = def;
+        super(hp, atk, def);
     }
 
     public Battler(int hp, int atk, int def, int type) {
-        this.hp = hp;
-        this.atk = atk;
-        this.def = def;
-        this.type = type;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public int getAtk() {
-        return atk;
-    }
-
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
-
-    public int getDef() {
-        return def;
-    }
-
-    public void setDef(int def) {
-        this.def = def;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
+        super(hp, atk, def, type);
     }
 
     public int getLevel() {
@@ -80,11 +32,24 @@ public class Battler implements GenFromBarCode {
     @Override
     public String toString() {
         return "Battler{" +
-                "id=" + id +
-                ", hp=" + hp +
-                ", atk=" + atk +
-                ", def=" + def +
-                ", type=" + type +
+                super.toString() +
+                ", level=" + level +
                 '}';
+    }
+
+    public Battler(Parcel source) {
+        super(source);
+        level = source.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeInt(level);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 }

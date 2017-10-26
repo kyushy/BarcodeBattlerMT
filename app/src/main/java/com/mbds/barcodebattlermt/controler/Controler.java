@@ -29,12 +29,40 @@ public class Controler {
                 def = def < 300 ? def + 1000 : def;
                 return new Battler(hp, atk, def, type);
             case 1:
+                int hpP = 0;
+                int atkP = 0;
+                int defP = 0;
+                if (type < 3) {
+                    hpP = 100 * (Character.getNumericValue(barcode.charAt(5)) * 10
+                            + Character.getNumericValue(barcode.charAt(4)));
+                    hpP = Character.getNumericValue(barcode.charAt(6)) >= 7 ? hpP + 1000 : hpP;
+                } else if (type < 6) {
+                    atkP = 100 * ((Character.getNumericValue(barcode.charAt(5))
+                            + Character.getNumericValue(barcode.charAt(4)) + 1) % 10);
+                    atkP = Character.getNumericValue(barcode.charAt(6)) >= 7 ? atkP + 1000 : atkP;
+                } else if (type < 9) {
+                    defP = 100 * ((Character.getNumericValue(barcode.charAt(5))
+                            + Character.getNumericValue(barcode.charAt(4)) + 3) % 10);
+                    defP = Character.getNumericValue(barcode.charAt(6)) >= 7 ? defP + 1000 : defP;
+                } else {
+                    hpP = 100 * (Character.getNumericValue(barcode.charAt(5)) * 10
+                            + Character.getNumericValue(barcode.charAt(4)));
+                    hpP = Character.getNumericValue(barcode.charAt(6)) >= 7 ? hpP + 1000 : hpP;
+                    atkP = 100 * ((Character.getNumericValue(barcode.charAt(5))
+                            + Character.getNumericValue(barcode.charAt(4)) + 1) % 10);
+                    atkP = Character.getNumericValue(barcode.charAt(6)) >= 7 ? atkP + 1000 : atkP;
+                    defP = 100 * ((Character.getNumericValue(barcode.charAt(5))
+                            + Character.getNumericValue(barcode.charAt(4)) + 3) % 10);
+                    defP = Character.getNumericValue(barcode.charAt(6)) >= 7 ? defP + 1000 : defP;
+                }
+                return new Battler(hpP, atkP, defP, type);
+            // new potionItem
             case 9:
                 int hpI = 100 * (Character.getNumericValue(barcode.charAt(5)) * 10
                         + Character.getNumericValue(barcode.charAt(4)));
                 hpI = Character.getNumericValue(barcode.charAt(6)) >= 7 ? hpI + 1000 : hpI;
                 return new Battler(hpI, 0, 0, type);
-            // new hpItem A B C D E F G H 7
+            // new hpItem
             case 5:
             case 6:
                 int atkI = 100 * ((Character.getNumericValue(barcode.charAt(5))
