@@ -101,6 +101,7 @@ public class GameActivity extends AppCompatActivity {
                     String bar = r.substring(Math.max(0, r.length() - 8));
                     Battler g = (Battler) Controler.generate(bar);
                     Log.v("Test", g.toString());
+                    myHelper.addBattler(g);
                 }
             }
         } else {
