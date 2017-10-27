@@ -16,8 +16,11 @@ public class Helper extends SQLiteOpenHelper {
     // Database Name
     private static final String DATABASE_NAME = "Battlers";
 
+    private SQLiteDatabase db;
+
     public Helper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.db = this.getWritableDatabase();
     }
 
     @Override
@@ -40,7 +43,7 @@ public class Helper extends SQLiteOpenHelper {
     }
 
     public void addBattler(Battler b) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        //SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Hp", b.getHp());
         values.put("Atk", b.getAtk());
@@ -48,11 +51,11 @@ public class Helper extends SQLiteOpenHelper {
         values.put("Type", b.getType());
         values.put("Level", b.getLevel());
         db.insert("Battlers", null, values);
-        db.close();
+        //db.close();
     }
 
     public void UpdateBattler(Battler b) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        //SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Hp", b.getHp());
         values.put("Atk", b.getAtk());
@@ -60,14 +63,14 @@ public class Helper extends SQLiteOpenHelper {
         values.put("Type", b.getType());
         values.put("Level", b.getLevel());
         db.update("Battlers", values, "Id = " + b.getId(), null);
-        db.close();
+        //db.close();
 
 
     }
 
     public List<Battler> getBattlers() {
         List<Battler> battlers = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
+        //SQLiteDatabase db = this.getReadableDatabase();
         //db.query ou rawQuery -> renvoie un Cursor, sorte de vue de résultats de la base de donnée
         Cursor cursor = db.rawQuery("SELECT * FROM Battlers;", null);
 

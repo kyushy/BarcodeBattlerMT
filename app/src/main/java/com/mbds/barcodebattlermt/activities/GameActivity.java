@@ -113,4 +113,9 @@ public class GameActivity extends AppCompatActivity {
         return myHelper;
     }
 
+    @Override
+    protected void onDestroy() {
+        myHelper.close();
+        super.onDestroy();
+    }
 }
