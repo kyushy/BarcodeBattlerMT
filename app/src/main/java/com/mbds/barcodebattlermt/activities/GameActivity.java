@@ -21,6 +21,7 @@ import com.mbds.barcodebattlermt.fragments.ChoiceFightFragment;
 import com.mbds.barcodebattlermt.controler.Controler;
 import com.mbds.barcodebattlermt.model.Battler;
 import com.mbds.barcodebattlermt.model.GenFromBarCode;
+import com.mbds.barcodebattlermt.model.Helper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +36,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView mTextMessage;
     private FragmentManager manager;
     private Fragment fragment;
+    private Helper myHelper;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -78,6 +80,9 @@ public class GameActivity extends AppCompatActivity {
 
         mTextMessage = (TextView) findViewById(R.id.message);
         manager = GameActivity.this.getFragmentManager();
+
+        myHelper = new Helper(this);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -101,6 +106,10 @@ public class GameActivity extends AppCompatActivity {
         } else {
             Log.v("Test", "" + requestCode);
         }
+    }
+
+    public Helper getHelper() {
+        return myHelper;
     }
 
 }

@@ -28,7 +28,7 @@ public class Helper extends SQLiteOpenHelper {
                 "Atk    INTEGER NOT NULL," +
                 "Def    INTEGER NOT NULL," +
                 "Type   INTEGER NOT NULL," +
-                "Level  INTEGER NOT NULL," +
+                "Level  INTEGER NOT NULL " +
                 ");";
         db.execSQL(CREATE_BATTLER);
     }
@@ -76,6 +76,7 @@ public class Helper extends SQLiteOpenHelper {
             cursor.moveToFirst();
             for (int i = 0; i < cursor.getCount(); i++) {
                 Battler b = new Battler();
+                b.setId(cursor.getInt(0));
                 b.setHp(cursor.getInt(1));
                 b.setAtk(cursor.getInt(2));
                 b.setDef(cursor.getInt(3));
