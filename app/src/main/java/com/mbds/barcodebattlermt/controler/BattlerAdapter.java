@@ -1,4 +1,4 @@
-package com.mbds.barcodebattlermt.model;
+package com.mbds.barcodebattlermt.controler;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.mbds.barcodebattlermt.R;
+import com.mbds.barcodebattlermt.model.Battler;
 
 import java.util.List;
 
