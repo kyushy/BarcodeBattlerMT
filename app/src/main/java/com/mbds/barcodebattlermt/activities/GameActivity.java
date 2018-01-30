@@ -19,6 +19,8 @@ import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.fragments.BattleListFragment;
 import com.mbds.barcodebattlermt.fragments.ChoiceFightFragment;
 import com.mbds.barcodebattlermt.controler.Controler;
+import com.mbds.barcodebattlermt.fragments.GearListFragment;
+import com.mbds.barcodebattlermt.fragments.HomeFragment;
 import com.mbds.barcodebattlermt.model.Battler;
 import com.mbds.barcodebattlermt.model.GenFromBarCode;
 import com.mbds.barcodebattlermt.model.Helper;
@@ -46,6 +48,8 @@ public class GameActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
+                    fragment = HomeFragment.newInstance("", "");
+                    manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
                     return true;
                 case R.id.navigation_scan:
                     mTextMessage.setText(R.string.title_scan);
@@ -67,6 +71,8 @@ public class GameActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_gears:
                     mTextMessage.setText(R.string.title_gears);
+                    fragment = GearListFragment.newInstance("", "");
+                    manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
                     return true;
             }
             return false;

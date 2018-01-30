@@ -12,7 +12,8 @@ import java.security.InvalidParameterException;
 public class Controler {
 
     public static GenFromBarCode generate(String barcode) {
-        int type = Character.getNumericValue(barcode.charAt(0));
+        int rand = Character.getNumericValue(barcode.charAt(0));
+        int type = Character.getNumericValue(barcode.charAt(7));
         switch (Character.getNumericValue(barcode.charAt(7))) {
             case 0:
             case 2:
@@ -32,15 +33,15 @@ public class Controler {
                 int hpP = 0;
                 int atkP = 0;
                 int defP = 0;
-                if (type < 3) {
+                if (rand < 3) {
                     hpP = 100 * (Character.getNumericValue(barcode.charAt(5)) * 10
                             + Character.getNumericValue(barcode.charAt(4)));
                     hpP = Character.getNumericValue(barcode.charAt(6)) >= 7 ? hpP + 1000 : hpP;
-                } else if (type < 6) {
+                } else if (rand < 6) {
                     atkP = 100 * ((Character.getNumericValue(barcode.charAt(5))
                             + Character.getNumericValue(barcode.charAt(4)) + 1) % 10);
                     atkP = Character.getNumericValue(barcode.charAt(6)) >= 7 ? atkP + 1000 : atkP;
-                } else if (type < 9) {
+                } else if (rand < 9) {
                     defP = 100 * ((Character.getNumericValue(barcode.charAt(5))
                             + Character.getNumericValue(barcode.charAt(4)) + 3) % 10);
                     defP = Character.getNumericValue(barcode.charAt(6)) >= 7 ? defP + 1000 : defP;
