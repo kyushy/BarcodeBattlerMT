@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.model.Battler;
+import com.mbds.barcodebattlermt.model.GenFromBarCode;
 
 import java.util.List;
 
@@ -17,9 +18,9 @@ import java.util.List;
  * Created by Fred on 26/10/2017.
  */
 
-public class BattlerAdapter extends ArrayAdapter<Battler> {
+public class BattlerAdapter extends ArrayAdapter<GenFromBarCode> {
 
-    public BattlerAdapter(Context context, List<Battler> battlers) {
+    public BattlerAdapter(Context context, List<GenFromBarCode> battlers) {
         super(context, 0, battlers);
     }
 
@@ -41,7 +42,7 @@ public class BattlerAdapter extends ArrayAdapter<Battler> {
         }
 
         //getItem(position) va récupérer l'item [position] de la List<Battler> battlers
-        Battler battler = getItem(position);
+        GenFromBarCode battler = getItem(position);
 
         //il ne reste plus qu'à remplir notre vue
         viewHolder.id.setText(battler.getId()+"");

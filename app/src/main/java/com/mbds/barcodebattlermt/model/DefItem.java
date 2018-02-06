@@ -7,12 +7,12 @@ import android.annotation.SuppressLint;
  */
 
 @SuppressLint("ParcelCreator")
-public class Weapon extends GenFromBarCode {
+public class DefItem extends GenFromBarCode {
 
-    public Weapon(){}
+    public DefItem() {}
 
-    public Weapon(int atk) {
-        super(0, atk, 0);
+    public DefItem(int def, int type) {
+        super(0, 0, def, type);
     }
 
     @Override

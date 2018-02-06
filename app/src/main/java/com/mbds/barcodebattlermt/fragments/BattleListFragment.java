@@ -13,6 +13,7 @@ import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.activities.GameActivity;
 import com.mbds.barcodebattlermt.model.Battler;
 import com.mbds.barcodebattlermt.controler.BattlerAdapter;
+import com.mbds.barcodebattlermt.model.GenFromBarCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class BattleListFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private ListView battlersListView;
-    private List<Battler> battlers;
+    private List<GenFromBarCode> battlers;
 
     public BattleListFragment() {
         // Required empty public constructor

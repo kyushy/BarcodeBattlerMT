@@ -7,12 +7,12 @@ import android.annotation.SuppressLint;
  */
 
 @SuppressLint("ParcelCreator")
-public class Armor extends GenFromBarCode {
+public class HpItem extends GenFromBarCode {
 
-    public Armor() {}
+    public HpItem() {}
 
-    public Armor(int def) {
-        super(0, 0, def);
+    public HpItem(int hp, int type) {
+        super(hp, 0, 0, type);
     }
 
     @Override

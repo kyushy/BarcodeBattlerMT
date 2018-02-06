@@ -13,6 +13,7 @@ import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.activities.GameActivity;
 import com.mbds.barcodebattlermt.controler.BattlerAdapter;
 import com.mbds.barcodebattlermt.model.Battler;
+import com.mbds.barcodebattlermt.model.GenFromBarCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class GearListFragment extends Fragment {
     private String mParam2;
 
     private ListView gearsListView;
-    private List<Battler> gears;
+    private List<GenFromBarCode> gears;
 
     private OnFragmentInteractionListener mListener;
 
