@@ -97,6 +97,40 @@ public class Helper extends SQLiteOpenHelper {
         //db.close();
     }
 
+    public void addHpItem(HpItem b) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("Hp", b.getHp());
+        values.put("Type", b.getType());
+        db.insert("HpItems", null, values);
+    }
+
+    public void addAtkItem(AtkItem b) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("Atk", b.getAtk());
+        values.put("Type", b.getType());
+        db.insert("AtkItems", null, values);
+    }
+
+    public void addDefItem(DefItem b) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("Def", b.getDef());
+        values.put("Type", b.getType());
+        db.insert("DefItems", null, values);
+    }
+
+    public void addPotion(Potion b) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("Hp", b.getHp());
+        values.put("Atk", b.getAtk());
+        values.put("Def", b.getDef());
+        values.put("Type", b.getType());
+        db.insert("Potions", null, values);
+    }
+
     public void UpdateBattler(Battler b) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -107,8 +141,6 @@ public class Helper extends SQLiteOpenHelper {
         values.put("Level", b.getLevel());
         db.update("Battlers", values, "Id = " + b.getId(), null);
         //db.close();
-
-
     }
 
     public List<GenFromBarCode> getBattlers() {

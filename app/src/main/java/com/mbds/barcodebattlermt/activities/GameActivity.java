@@ -21,9 +21,13 @@ import com.mbds.barcodebattlermt.fragments.ChoiceFightFragment;
 import com.mbds.barcodebattlermt.controler.Controler;
 import com.mbds.barcodebattlermt.fragments.GearListFragment;
 import com.mbds.barcodebattlermt.fragments.HomeFragment;
+import com.mbds.barcodebattlermt.model.AtkItem;
 import com.mbds.barcodebattlermt.model.Battler;
+import com.mbds.barcodebattlermt.model.DefItem;
 import com.mbds.barcodebattlermt.model.GenFromBarCode;
 import com.mbds.barcodebattlermt.model.Helper;
+import com.mbds.barcodebattlermt.model.HpItem;
+import com.mbds.barcodebattlermt.model.Potion;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +42,7 @@ public class GameActivity extends HelperActivity {
     private TextView mTextMessage;
     private FragmentManager manager;
     private Fragment fragment;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -86,6 +91,8 @@ public class GameActivity extends HelperActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         manager = GameActivity.this.getFragmentManager();
 
+
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -102,9 +109,23 @@ public class GameActivity extends HelperActivity {
                     throw new IllegalArgumentException("Barcode with less than 8 characters.");
                 } else {
                     String bar = r.substring(Math.max(0, r.length() - 8));
-                    Battler g = (Battler) Controler.generate(bar);
+                    GenFromBarCode g = Controler.generate(bar);
                     Log.v("Test", g.toString());
-                    getHelper().addBattler(g);
+                    if(g instanceof Battler) {
+                        getHelper().addBattler((Battler)g);
+                    }
+                    else if (g instanceof HpItem) {
+                        getHelper().addHpItem((HpItem)g);
+                    }
+                    else if (g instanceof AtkItem) {
+                        getHelper().addAtkItem((AtkItem)g);
+                    }
+                    else if (g instanceof DefItem) {
+                        getHelper().addDefItem((DefItem)g);
+                    }
+                    else {
+                        getHelper().addPotion((Potion)g);
+                    }
                 }
             }
         } else {
