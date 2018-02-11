@@ -1,14 +1,19 @@
 package com.mbds.barcodebattlermt.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.mbds.barcodebattlermt.R;
+import com.mbds.barcodebattlermt.activities.GameActivity;
+import com.mbds.barcodebattlermt.activities.MainActivity;
+import com.mbds.barcodebattlermt.bluetooth.BluetoothActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,13 +64,22 @@ public class ChoiceFightFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choice_fight, container, false);
+        View view = inflater.inflate(R.layout.fragment_choice_fight, container, false);
+        Button button = (Button) view.findViewById(R.id.reseaufight_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), BluetoothActivity.class));
+
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -38,21 +38,21 @@ public class Helper extends SQLiteOpenHelper {
         String CREATE_HPITEM = "CREATE TABLE HpItems ( " +
                 "Id     INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Hp    INTEGER NOT NULL," +
-                "Type   INTEGER NOT NULL," +
+                "Type   INTEGER NOT NULL" +
                 ");";
         db.execSQL(CREATE_HPITEM);
 
         String CREATE_ATKITEM = "CREATE TABLE AtkItems ( " +
                 "Id     INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Atk    INTEGER NOT NULL," +
-                "Type   INTEGER NOT NULL," +
+                "Type   INTEGER NOT NULL" +
                 ");";
         db.execSQL(CREATE_ATKITEM);
 
         String CREATE_DEFITEM = "CREATE TABLE DefItems ( " +
                 "Id     INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Def    INTEGER NOT NULL," +
-                "Type   INTEGER NOT NULL," +
+                "Type   INTEGER NOT NULL" +
                 ");";
         db.execSQL(CREATE_DEFITEM);
 
@@ -61,7 +61,7 @@ public class Helper extends SQLiteOpenHelper {
                 "Hp     INTEGER NOT NULL," +
                 "Atk    INTEGER NOT NULL," +
                 "Def    INTEGER NOT NULL," +
-                "Type   INTEGER NOT NULL," +
+                "Type   INTEGER NOT NULL" +
                 ");";
         db.execSQL(CREATE_POTION);
     }
