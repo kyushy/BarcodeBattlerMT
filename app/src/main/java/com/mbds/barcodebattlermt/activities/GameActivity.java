@@ -21,9 +21,13 @@ import com.mbds.barcodebattlermt.fragments.ChoiceFightFragment;
 import com.mbds.barcodebattlermt.controler.Controler;
 import com.mbds.barcodebattlermt.fragments.GearListFragment;
 import com.mbds.barcodebattlermt.fragments.HomeFragment;
+import com.mbds.barcodebattlermt.model.AtkItem;
 import com.mbds.barcodebattlermt.model.Battler;
+import com.mbds.barcodebattlermt.model.DefItem;
 import com.mbds.barcodebattlermt.model.GenFromBarCode;
 import com.mbds.barcodebattlermt.model.Helper;
+import com.mbds.barcodebattlermt.model.HpItem;
+import com.mbds.barcodebattlermt.model.Potion;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,9 +109,23 @@ public class GameActivity extends AppCompatActivity {
                     throw new IllegalArgumentException("Barcode with less than 8 characters.");
                 } else {
                     String bar = r.substring(Math.max(0, r.length() - 8));
-                    Battler g = (Battler) Controler.generate(bar);
+                    GenFromBarCode g = Controler.generate(bar);
                     Log.v("Test", g.toString());
-                    myHelper.addBattler(g);
+                    if(g instanceof Battler) {
+                        myHelper.addBattler((Battler)g);
+                    }
+                    else if (g instanceof HpItem) {
+                        myHelper.addHpItem((HpItem)g);
+                    }
+                    else if (g instanceof AtkItem) {
+                        myHelper.addAtkItem((AtkItem)g);
+                    }
+                    else if (g instanceof DefItem) {
+                        myHelper.addDefItem((DefItem)g);
+                    }
+                    else {
+                        myHelper.addPotion((Potion)g);
+                    }
                 }
             }
         } else {
