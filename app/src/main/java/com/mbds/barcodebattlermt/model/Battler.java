@@ -54,4 +54,17 @@ public class Battler extends GenFromBarCode {
     public int describeContents() {
         return 0;
     }
+
+    public int getLvlHp() {
+        return (int)(getHp()+ getHp()*level*0.1);
+    }
+
+    public int getLvlAtk() {
+        return (int)(getAtk()+ getAtk()*level*0.1);
+    }
+
+    public int getLvlDef() {
+        return (int)(getDef()+ getDef()*level*0.1);
+    }
+
 }

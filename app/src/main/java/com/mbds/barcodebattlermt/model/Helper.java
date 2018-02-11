@@ -170,6 +170,26 @@ public class Helper extends SQLiteOpenHelper {
         return battlers;
     }
 
+    public Battler getBattler(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        //db.query ou rawQuery -> renvoie un Cursor, sorte de vue de résultats de la base de donnée
+        Cursor cursor = db.query("Battlers", null, "Id = ?" , new String[]{""+id}, null, null, null);
+
+        //Parcours des résultats  :
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Battler b = new Battler();
+        b.setId(cursor.getInt(0));
+        b.setHp(cursor.getInt(1));
+        b.setAtk(cursor.getInt(2));
+        b.setDef(cursor.getInt(3));
+        b.setType(cursor.getInt(4));
+        b.setLevel(cursor.getInt(5));
+        return b;
+
+    }
+
     public List<HpItem> getHpItems() {
         List<HpItem> hpItems = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
