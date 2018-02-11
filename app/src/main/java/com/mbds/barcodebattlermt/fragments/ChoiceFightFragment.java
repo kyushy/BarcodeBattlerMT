@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.mbds.barcodebattlermt.R;
+import com.mbds.barcodebattlermt.activities.FightActivity;
 import com.mbds.barcodebattlermt.activities.GameActivity;
 import com.mbds.barcodebattlermt.activities.MainActivity;
 import com.mbds.barcodebattlermt.bluetooth.BluetoothActivity;
@@ -76,6 +77,13 @@ public class ChoiceFightFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), BluetoothActivity.class));
+
+            }
+        });
+        Button button2 = (Button) view.findViewById(R.id.localfight_btn);
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), FightActivity.class));
 
             }
         });

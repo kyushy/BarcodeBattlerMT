@@ -19,10 +19,38 @@
               android:layout_height="match_parent"
               android:orientation="vertical" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/secure_connect_scan"
+            android:drawableStart="@drawable/ic_action_device_access_bluetooth_searching"
+            android:text="@string/secure_connect" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/insecure_connect_scan"
+            android:drawableStart="@drawable/ic_action_device_access_bluetooth_searching"
+            android:text="@string/insecure_connect" />
+
+        <Button
+            android:id="@+id/discoverable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/scan_black"
+            android:text="@string/discoverable" />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/in"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll" />

@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.activities.GameActivity;
+import com.mbds.barcodebattlermt.activities.HelperActivity;
 import com.mbds.barcodebattlermt.model.Battler;
 import com.mbds.barcodebattlermt.controler.BattlerAdapter;
 import com.mbds.barcodebattlermt.model.GenFromBarCode;
@@ -80,7 +81,7 @@ public class BattleListFragment extends Fragment {
         battlersListView = (ListView) view.findViewById(R.id.battlers_list);
 
         battlers = new ArrayList<>();
-        battlers = ((GameActivity) getActivity()).getHelper().getBattlers();
+        battlers = ((HelperActivity) getActivity()).getHelper().getBattlers();
 
         BattlerAdapter adapter = new BattlerAdapter(getActivity(), battlers);
         battlersListView.setAdapter(adapter);

@@ -33,12 +33,11 @@ import java.util.Collection;
 import java.util.List;
 
 // UID pout bt : 2,5
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends HelperActivity {
 
     private TextView mTextMessage;
     private FragmentManager manager;
     private Fragment fragment;
-    private Helper myHelper;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -87,8 +86,6 @@ public class GameActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         manager = GameActivity.this.getFragmentManager();
 
-        myHelper = new Helper(this);
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -107,7 +104,7 @@ public class GameActivity extends AppCompatActivity {
                     String bar = r.substring(Math.max(0, r.length() - 8));
                     Battler g = (Battler) Controler.generate(bar);
                     Log.v("Test", g.toString());
-                    myHelper.addBattler(g);
+                    getHelper().addBattler(g);
                 }
             }
         } else {
@@ -115,13 +112,4 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    public Helper getHelper() {
-        return myHelper;
-    }
-
-    @Override
-    protected void onDestroy() {
-        myHelper.close();
-        super.onDestroy();
-    }
 }

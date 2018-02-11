@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mbds.barcodebattlermt.activities.FightActivity"
+    android:background="@drawable/game_tmp_background">
+
+
+    <include layout="@layout/content_fight" />
+
+
+</android.support.design.widget.CoordinatorLayout>
