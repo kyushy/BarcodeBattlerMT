@@ -7,9 +7,11 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.mbds.barcodebattlermt.R;
+import com.mbds.barcodebattlermt.activities.FightActivity;
 import com.mbds.barcodebattlermt.activities.GameActivity;
 import com.mbds.barcodebattlermt.activities.HelperActivity;
 import com.mbds.barcodebattlermt.model.Battler;
@@ -85,6 +87,22 @@ public class BattleListFragment extends Fragment {
 
         BattlerAdapter adapter = new BattlerAdapter(getActivity(), battlers, getResources());
         battlersListView.setAdapter(adapter);
+        if(mParam1.equals("FIGHT")){
+            battlersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+                    //Fragment fragment = BattleListFragment.newInstance("", "");
+                    //((FightActivity) getActivity()).changeFragment(fragment);
+                    Battler entry = (Battler) parent.getItemAtPosition(position);
+                    Fragment fragment = FightFragment.newInstance(""+entry.getId(), "");
+                    ((FightActivity) getActivity()).changeFragment(fragment);
+                }
+            });
+        }
+        else{
+
+        }
 
         return view;
     }

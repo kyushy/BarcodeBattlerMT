@@ -170,10 +170,10 @@ public class Helper extends SQLiteOpenHelper {
         return battlers;
     }
 
-    public Battler getBattler(int id) {
+    public Battler getBattler(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         //db.query ou rawQuery -> renvoie un Cursor, sorte de vue de résultats de la base de donnée
-        Cursor cursor = db.query("Battlers", null, "Id = ?" , new String[]{""+id}, null, null, null);
+        Cursor cursor = db.query("Battlers", null, "Id = ?" , new String[]{id}, null, null, null);
 
         //Parcours des résultats  :
         if (cursor != null)

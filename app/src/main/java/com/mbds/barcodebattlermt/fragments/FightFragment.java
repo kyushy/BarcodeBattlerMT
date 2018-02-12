@@ -121,8 +121,8 @@ public class FightFragment extends Fragment {
         dmga = (TextView) view.findViewById(R.id.dmg1);
         dmge = (TextView) view.findViewById(R.id.dmg2);
 
-        mine = ((HelperActivity) getActivity()).getHelper().getBattler(1);
-        bad = ((HelperActivity) getActivity()).getHelper().getBattler(1);
+        mine = ((HelperActivity) getActivity()).getHelper().getBattler(mParam1);
+        bad = ((HelperActivity) getActivity()).getHelper().getBattler(mParam1);
         int id = getResources().getIdentifier("sprite_" + (mine.getType() + 1), "drawable", "com.mbds.barcodebattlermt");
         ally.setImageResource(id);
         int id2 = getResources().getIdentifier("sprite_" + (bad.getType() + 1), "drawable", "com.mbds.barcodebattlermt");
