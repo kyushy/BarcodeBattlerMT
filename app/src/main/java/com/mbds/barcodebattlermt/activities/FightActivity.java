@@ -10,12 +10,15 @@ import com.mbds.barcodebattlermt.fragments.FightFragment;
 
 public class FightActivity extends HelperActivity {
 
+
+    private FragmentManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fight);
 
-        FragmentManager manager = FightActivity.this.getFragmentManager();
+        manager = FightActivity.this.getFragmentManager();
        // Fragment fragment = BattleListFragment.newInstance("", "");
 
         /// Temp for test
@@ -23,6 +26,10 @@ public class FightActivity extends HelperActivity {
         Fragment fragment = FightFragment.newInstance("", "");
         manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
 
+    }
+
+    public void changeFragment(Fragment fragment){
+        manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 
 }

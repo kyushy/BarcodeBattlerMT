@@ -82,7 +82,7 @@ public class GearListFragment extends Fragment {
         gears = new ArrayList<>();
         gears = ((GameActivity) getActivity()).getHelper().getGears();
 
-        BattlerAdapter adapter = new BattlerAdapter(getActivity(), gears);
+        BattlerAdapter adapter = new BattlerAdapter(getActivity(), gears, getResources());
         gearsListView.setAdapter(adapter);
 
         return view;

@@ -1,14 +1,24 @@
 package com.mbds.barcodebattlermt.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.Nullable;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.mbds.barcodebattlermt.R;
+import com.mbds.barcodebattlermt.activities.FightActivity;
+import com.mbds.barcodebattlermt.activities.GameActivity;
+import com.mbds.barcodebattlermt.activities.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +37,15 @@ public class ResultFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView res;
+
+    private TextView lvl;
+
+    private ImageView img;
+    private ImageView img2;
+
+    private RelativeLayout relativeLayout;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,6 +85,34 @@ public class ResultFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_result, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        img = (ImageView) view.findViewById(R.id.mob);
+        img2 = (ImageView) view.findViewById(R.id.lvlup);
+        lvl = (TextView) view.findViewById(R.id.lvl);
+        res = (TextView) view.findViewById(R.id.Result);
+        relativeLayout = (RelativeLayout) view.findViewById(R.id.ResultLayout);
+        int id = getResources().getIdentifier("sprite_" + (mParam2), "drawable", "com.mbds.barcodebattlermt");
+        img.setImageResource(id);
+        if(!mParam1.equals("")){
+            lvl.setVisibility(View.VISIBLE);
+            lvl.setText(mParam1);
+            img2.setVisibility(View.VISIBLE);
+            res.setText("YOU WIN !!");
+        }
+        else{
+            res.setTextColor(Color.RED);
+            res.setText("YOU LOSE !!");
+        }
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = BattleListFragment.newInstance("", "");
+                ((FightActivity) getActivity()).changeFragment(fragment);
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

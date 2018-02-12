@@ -131,7 +131,7 @@ public class Helper extends SQLiteOpenHelper {
         db.insert("Potions", null, values);
     }
 
-    public void UpdateBattler(Battler b) {
+    public void updateBattler(Battler b) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Hp", b.getHp());

@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mbds.barcodebattlermt.R;
+import com.mbds.barcodebattlermt.activities.FightActivity;
 import com.mbds.barcodebattlermt.activities.HelperActivity;
 import com.mbds.barcodebattlermt.model.Battler;
 
@@ -333,8 +334,26 @@ public class FightFragment extends Fragment {
     }
 
     private void finish() {
-        System.out.println("hpa " + hpa.getProgress());
-        System.out.println("hpe " + hpe.getProgress());
+        atk.setEnabled(false);
+        riposte.setEnabled(false);
+        special.setEnabled(false);
+        potion.setEnabled(false);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(hpa.getProgress() > 0 ){
+            mine.setLevel(mine.getLevel()+1);
+            ((HelperActivity) getActivity()).getHelper().updateBattler(mine);
+
+            Fragment fragment = ResultFragment.newInstance(""+mine.getLevel(), ""+(mine.getType()+1));
+            ((FightActivity) getActivity()).changeFragment(fragment);
+        }
+        else{
+            Fragment fragment = ResultFragment.newInstance("", ""+(mine.getType()+1));
+            ((FightActivity) getActivity()).changeFragment(fragment);
+        }
 
     }
 

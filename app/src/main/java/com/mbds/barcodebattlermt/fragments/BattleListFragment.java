@@ -83,7 +83,7 @@ public class BattleListFragment extends Fragment {
         battlers = new ArrayList<>();
         battlers = ((HelperActivity) getActivity()).getHelper().getBattlers();
 
-        BattlerAdapter adapter = new BattlerAdapter(getActivity(), battlers);
+        BattlerAdapter adapter = new BattlerAdapter(getActivity(), battlers, getResources());
         battlersListView.setAdapter(adapter);
 
         return view;
