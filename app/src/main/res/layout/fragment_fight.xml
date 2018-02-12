@@ -81,7 +81,9 @@
             android:layout_above="@+id/imageView"
             android:layout_alignEnd="@+id/imageView"
             android:layout_alignStart="@+id/imageView"
-            android:progress="100" />
+            android:indeterminate="false"
+            android:progress="100"
+            android:progressTint="@color/Green" />
 
         <ProgressBar
             android:id="@+id/progressBar2"
@@ -92,7 +94,40 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/imageView2"
             android:layout_marginTop="34dp"
-            android:progress="100"/>
+            android:progress="100"
+            android:progressTint="@color/Green" />
+
+        <TextView
+            android:id="@+id/dmg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progressBar"
+            android:layout_marginEnd="17dp"
+            android:layout_marginTop="56dp"
+            android:layout_toStartOf="@+id/imageView2"
+            android:background="@color/Black"
+            android:ems="10"
+            android:textAlignment="center"
+            android:textColor="@color/Red"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/dmg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/progressBar"
+            android:background="@color/Black"
+            android:ems="10"
+            android:textAlignment="center"
+            android:textColor="@color/Red"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="invisible"/>
     </RelativeLayout>
 
 </FrameLayout>
