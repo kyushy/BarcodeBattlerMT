@@ -1,0 +1,61 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mbds.barcodebattlermt.fragments.ResultFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:id="@+id/ResultLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/Result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Result"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/Yellow"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/mob"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_above="@+id/Result"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="17dp"
+            android:src="@drawable/sprite_1" />
+
+        <ImageView
+            android:id="@+id/lvlup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="89dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/level_up"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/lvl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/lvlup"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="19dp"
+            android:text="450"
+            android:textAlignment="center"
+            android:textColor="@color/Orange"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+</FrameLayout>

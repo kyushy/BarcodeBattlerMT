@@ -11,12 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.mbds.barcodebattlermt.R;
+import com.mbds.barcodebattlermt.activities.FightActivity;
 import com.mbds.barcodebattlermt.activities.HelperActivity;
 import com.mbds.barcodebattlermt.model.Battler;
 
@@ -49,6 +54,10 @@ public class FightFragment extends Fragment {
 
     private ProgressBar hpa;
     private ProgressBar hpe;
+
+    private TextView dmga;
+    private TextView dmge;
+
 
     private boolean finish = false;
 
@@ -109,8 +118,11 @@ public class FightFragment extends Fragment {
         hpa = (ProgressBar) view.findViewById(R.id.progressBar);
         hpe = (ProgressBar) view.findViewById(R.id.progressBar2);
 
-        mine = ((HelperActivity) getActivity()).getHelper().getBattler(1);
-        bad = ((HelperActivity) getActivity()).getHelper().getBattler(1);
+        dmga = (TextView) view.findViewById(R.id.dmg1);
+        dmge = (TextView) view.findViewById(R.id.dmg2);
+
+        mine = ((HelperActivity) getActivity()).getHelper().getBattler(mParam1);
+        bad = ((HelperActivity) getActivity()).getHelper().getBattler(mParam1);
         int id = getResources().getIdentifier("sprite_" + (mine.getType() + 1), "drawable", "com.mbds.barcodebattlermt");
         ally.setImageResource(id);
         int id2 = getResources().getIdentifier("sprite_" + (bad.getType() + 1), "drawable", "com.mbds.barcodebattlermt");
@@ -152,16 +164,39 @@ public class FightFragment extends Fragment {
         int defa = new Random().nextInt(mine.getLvlDef());
         int atke = new Random().nextInt(bad.getLvlAtk());
         int defe = new Random().nextInt(bad.getLvlDef());
+        Animation animation;
+        Animation animation2;
+        AnimationSet s;
+
         switch (action) {
             case "atk":
                 switch (actionBot) {
                     case "atk":
+                        animation = new TranslateAnimation(0, 200,0, -150);
+                        animation.setDuration(500);
+                        ally.startAnimation(animation);
+                        animation2 = new TranslateAnimation(0, -200,0, 150);
+                        animation2.setDuration(500);
+                        enemy.startAnimation(animation2);
                         neutre(atka, defa, atke, defe);
                         break;
                     case "rpt":
+                        animation = new TranslateAnimation(0, 200,0, -150);
+                        animation.setDuration(500);
+                        ally.startAnimation(animation);
+
+                        animation2 = new TranslateAnimation(0, -400,0, 300);
+                        animation2.setDuration(500);
+                        animation2.setStartOffset(500);
+                        enemy.startAnimation(animation2);
                         deffective(atka, defa, atke);
                         break;
                     case "spl":
+                        s = splAnim();
+                        animation = new TranslateAnimation(0, 400,0, -300);
+                        animation.setDuration(500);
+                        ally.startAnimation(animation);
+                        enemy.startAnimation(s);
                         effective(atka, atke, defe);
                         break;
                 }
@@ -169,12 +204,23 @@ public class FightFragment extends Fragment {
             case "rpt":
                 switch (actionBot) {
                     case "atk":
+                        //anim riposte
+                        animation = new TranslateAnimation(0, 400,0, -300);
+                        animation.setStartOffset(500);
+                        animation.setDuration(500);
+                        ally.startAnimation(animation);
+                        //anim atk
+                        animation2 = new TranslateAnimation(0, -200,0, 150);
+                        animation2.setDuration(500);
+                        enemy.startAnimation(animation2);
                         effective(atka, atke, defe);
                         break;
                     case "rpt":
-                        neutre(atka, defa, atke, defe);
+                        neutre(0, defa, 0, defe);
                         break;
                     case "spl":
+                        s = splAnim();
+                        enemy.startAnimation(s);
                         deffective(atka, defa, atke);
                         break;
                 }
@@ -183,12 +229,22 @@ public class FightFragment extends Fragment {
             case "spl":
                 switch (actionBot) {
                     case "atk":
+                        s = splAnim();
+                        ally.startAnimation(s);
+                        animation2 = new TranslateAnimation(0, -200,0, 150);
+                        animation2.setDuration(500);
+                        enemy.startAnimation(animation2);
                         deffective(atka, defa, atke);
                         break;
                     case "rpt":
+                        s = splAnim();
+                        ally.startAnimation(s);
                         effective(atka, atke, defe);
                         break;
                     case "spl":
+                        s = splAnim();
+                        ally.startAnimation(s);
+                        enemy.startAnimation(s);
                         neutre(atka, defa, atke, defe);
                         break;
                 }
@@ -197,11 +253,24 @@ public class FightFragment extends Fragment {
         }
     }
 
+    private AnimationSet splAnim(){
+        AnimationSet s = new AnimationSet(false);
+        Animation animation = new TranslateAnimation(0, 0,0, -100);
+        animation.setDuration(250);
+        s.addAnimation(animation);
+        Animation animation2 = new TranslateAnimation(0, 0,0, 200);
+        animation2.setDuration(250);
+        animation2.setStartOffset(250);
+        s.addAnimation(animation2);
+        return s;
+    }
+
     private void effective(int atka, int atke, int defe) {
-        Animation animation = new TranslateAnimation(0, 400,0, -300);
-        animation.setDuration(500);
-        ally.startAnimation(animation);
-        int rese = hpe.getProgress() - (atka + atke - defe > 0 ? atka + atke - defe : 0);
+        int vale = (atka + atke - defe > 0 ? atka + atke - defe : 0);
+        int rese = hpe.getProgress() - vale;
+        dmge.setTextColor(Color.YELLOW);
+        // Damage animation
+        dmg(dmge, vale, " !!!");
 
         if (rese > 0)
             hpe.setProgress(rese);
@@ -212,10 +281,11 @@ public class FightFragment extends Fragment {
     }
 
     private void deffective(int atka, int defa, int atke) {
-        Animation animation = new TranslateAnimation(0, -400,0, 300);
-        animation.setDuration(500);
-        enemy.startAnimation(animation);
-        int resa = hpa.getProgress() - (atke + atka - defa > 0 ? atke + atka - defa : 0);
+        int vala = (atke + atka - defa > 0 ? atke + atka - defa : 0);
+        int resa = hpa.getProgress() - vala;
+        dmga.setTextColor(Color.YELLOW);
+        // Damage animation
+        dmg(dmga, vala, " !!!");
 
         if (resa > 0)
             hpa.setProgress(resa);
@@ -225,15 +295,31 @@ public class FightFragment extends Fragment {
         }
     }
 
+    private void dmg(TextView txt, int val, String bonus){
+        txt.setText("- " + val + bonus);
+        Animation fade_in = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
+        Animation fade_out = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
+
+        AnimationSet s = new AnimationSet(false);
+        s.addAnimation(fade_in);
+        fade_out.setStartOffset(fade_in.getDuration());
+        s.addAnimation(fade_out);
+        s.setFillAfter(true);
+        txt.startAnimation(s);
+    }
+
     private void neutre(int atka, int defa, int atke, int defe) {
-        Animation animation = new TranslateAnimation(0, 200,0, -150);
-        animation.setDuration(500);
-        ally.startAnimation(animation);
-        Animation animation2 = new TranslateAnimation(0, -200,0, 150);
-        animation2.setDuration(500);
-        enemy.startAnimation(animation2);
-        int resa = hpa.getProgress() - (atke - defa > 0 ? atke - defa : 0);
-        int rese = hpe.getProgress() - (atka - defe > 0 ? atka - defe : 0);
+
+        int vala = (atke - defa > 0 ? atke - defa : 0);
+        int vale = (atka - defe > 0 ? atka - defe : 0);
+        int resa = hpa.getProgress() - vala;
+        int rese = hpe.getProgress() - vale;
+
+        dmge.setTextColor(Color.rgb(255, 153, 153));
+        dmga.setTextColor(Color.rgb(255, 153, 153));
+        dmg(dmga, vala, " !");
+        dmg(dmge, vale, " !");
+
         if (resa > 0)
             hpa.setProgress(resa);
         else
@@ -248,8 +334,26 @@ public class FightFragment extends Fragment {
     }
 
     private void finish() {
-        System.out.println("hpa " + hpa.getProgress());
-        System.out.println("hpe " + hpe.getProgress());
+        atk.setEnabled(false);
+        riposte.setEnabled(false);
+        special.setEnabled(false);
+        potion.setEnabled(false);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(hpa.getProgress() > 0 ){
+            mine.setLevel(mine.getLevel()+1);
+            ((HelperActivity) getActivity()).getHelper().updateBattler(mine);
+
+            Fragment fragment = ResultFragment.newInstance(""+mine.getLevel(), ""+(mine.getType()+1));
+            ((FightActivity) getActivity()).changeFragment(fragment);
+        }
+        else{
+            Fragment fragment = ResultFragment.newInstance("", ""+(mine.getType()+1));
+            ((FightActivity) getActivity()).changeFragment(fragment);
+        }
 
     }
 

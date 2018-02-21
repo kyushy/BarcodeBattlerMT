@@ -10,19 +10,26 @@ import com.mbds.barcodebattlermt.fragments.FightFragment;
 
 public class FightActivity extends HelperActivity {
 
+
+    private FragmentManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fight);
 
-        FragmentManager manager = FightActivity.this.getFragmentManager();
-       // Fragment fragment = BattleListFragment.newInstance("", "");
+        manager = FightActivity.this.getFragmentManager();
+        Fragment fragment = BattleListFragment.newInstance("FIGHT", "");
 
         /// Temp for test
 
-        Fragment fragment = FightFragment.newInstance("", "");
+       // Fragment fragment = FightFragment.newInstance("", "");
         manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
 
+    }
+
+    public void changeFragment(Fragment fragment){
+        manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 
 }

@@ -131,7 +131,7 @@ public class Helper extends SQLiteOpenHelper {
         db.insert("Potions", null, values);
     }
 
-    public void UpdateBattler(Battler b) {
+    public void updateBattler(Battler b) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Hp", b.getHp());
@@ -170,10 +170,10 @@ public class Helper extends SQLiteOpenHelper {
         return battlers;
     }
 
-    public Battler getBattler(int id) {
+    public Battler getBattler(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         //db.query ou rawQuery -> renvoie un Cursor, sorte de vue de résultats de la base de donnée
-        Cursor cursor = db.query("Battlers", null, "Id = ?" , new String[]{""+id}, null, null, null);
+        Cursor cursor = db.query("Battlers", null, "Id = ?" , new String[]{id}, null, null, null);
 
         //Parcours des résultats  :
         if (cursor != null)

@@ -32,7 +32,6 @@ import java.util.Collection;
 // UID pout bt : 2,5
 public class GameActivity extends HelperActivity {
 
-    private TextView mTextMessage;
     private FragmentManager manager;
     private Fragment fragment;
 
@@ -44,12 +43,10 @@ public class GameActivity extends HelperActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
                     fragment = HomeFragment.newInstance("", "");
                     manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
                     return true;
                 case R.id.navigation_scan:
-                    mTextMessage.setText(R.string.title_scan);
                     IntentIntegrator barScan = new IntentIntegrator(GameActivity.this);
                     Collection<String> s = new ArrayList<>();
                     s.addAll(IntentIntegrator.PRODUCT_CODE_TYPES);
@@ -57,17 +54,14 @@ public class GameActivity extends HelperActivity {
                     barScan.initiateScan(s);
                     return true;
                 case R.id.navigation_fight:
-                    mTextMessage.setText(R.string.title_fight);
                     fragment = ChoiceFightFragment.newInstance("", "");
                     manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
                     return true;
                 case R.id.navigation_monsters:
-                    mTextMessage.setText(R.string.title_monsters);
                     fragment = BattleListFragment.newInstance("", "");
                     manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
                     return true;
                 case R.id.navigation_gears:
-                    mTextMessage.setText(R.string.title_gears);
                     fragment = GearListFragment.newInstance("", "");
                     manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
                     return true;
@@ -81,7 +75,6 @@ public class GameActivity extends HelperActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_b);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         manager = GameActivity.this.getFragmentManager();
 
 

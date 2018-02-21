@@ -1,35 +1,34 @@
 package com.mbds.barcodebattlermt.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.activities.FightActivity;
 import com.mbds.barcodebattlermt.activities.GameActivity;
-import com.mbds.barcodebattlermt.activities.HelperActivity;
-import com.mbds.barcodebattlermt.model.Battler;
-import com.mbds.barcodebattlermt.controler.BattlerAdapter;
-import com.mbds.barcodebattlermt.model.GenFromBarCode;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.mbds.barcodebattlermt.activities.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BattleListFragment.OnFragmentInteractionListener} interface
+ * {@link ResultFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BattleListFragment#newInstance} factory method to
+ * Use the {@link ResultFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BattleListFragment extends Fragment {
+public class ResultFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,12 +38,18 @@ public class BattleListFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private TextView res;
+
+    private TextView lvl;
+
+    private ImageView img;
+    private ImageView img2;
+
+    private RelativeLayout relativeLayout;
+
     private OnFragmentInteractionListener mListener;
 
-    private ListView battlersListView;
-    private List<GenFromBarCode> battlers;
-
-    public BattleListFragment() {
+    public ResultFragment() {
         // Required empty public constructor
     }
 
@@ -54,11 +59,11 @@ public class BattleListFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BattleListFragment.
+     * @return A new instance of fragment ResultFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BattleListFragment newInstance(String param1, String param2) {
-        BattleListFragment fragment = new BattleListFragment();
+    public static ResultFragment newInstance(String param1, String param2) {
+        ResultFragment fragment = new ResultFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,32 +84,35 @@ public class BattleListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_battle_list, container, false);
-        battlersListView = (ListView) view.findViewById(R.id.battlers_list);
+        return inflater.inflate(R.layout.fragment_result, container, false);
+    }
 
-        battlers = new ArrayList<>();
-        battlers = ((HelperActivity) getActivity()).getHelper().getBattlers();
-
-        BattlerAdapter adapter = new BattlerAdapter(getActivity(), battlers, getResources());
-        battlersListView.setAdapter(adapter);
-        if(mParam1.equals("FIGHT")){
-            battlersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position,
-                                        long id) {
-                    //Fragment fragment = BattleListFragment.newInstance("", "");
-                    //((FightActivity) getActivity()).changeFragment(fragment);
-                    Battler entry = (Battler) parent.getItemAtPosition(position);
-                    Fragment fragment = FightFragment.newInstance(""+entry.getId(), "");
-                    ((FightActivity) getActivity()).changeFragment(fragment);
-                }
-            });
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        img = (ImageView) view.findViewById(R.id.mob);
+        img2 = (ImageView) view.findViewById(R.id.lvlup);
+        lvl = (TextView) view.findViewById(R.id.lvl);
+        res = (TextView) view.findViewById(R.id.Result);
+        relativeLayout = (RelativeLayout) view.findViewById(R.id.ResultLayout);
+        int id = getResources().getIdentifier("sprite_" + (mParam2), "drawable", "com.mbds.barcodebattlermt");
+        img.setImageResource(id);
+        if(!mParam1.equals("")){
+            lvl.setVisibility(View.VISIBLE);
+            lvl.setText(mParam1);
+            img2.setVisibility(View.VISIBLE);
+            res.setText("YOU WIN !!");
         }
         else{
-
+            res.setTextColor(Color.RED);
+            res.setText("YOU LOSE !!");
         }
-
-        return view;
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = BattleListFragment.newInstance("", "");
+                ((FightActivity) getActivity()).changeFragment(fragment);
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -145,5 +153,4 @@ public class BattleListFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 }
