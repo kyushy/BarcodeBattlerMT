@@ -30,22 +30,6 @@ public abstract class GenFromBarCode implements Parcelable {
         this.type = type;
     }
 
-    public GenFromBarCode(Parcel source) {
-        id = source.readInt();
-        hp = source.readInt();
-        atk = source.readInt();
-        def = source.readInt();
-        type = source.readInt();
-    }
-
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeInt(hp);
-        dest.writeInt(atk);
-        dest.writeInt(def);
-        dest.writeInt(type);
-    }
-
     public int getId() {
         return id;
     }
@@ -95,5 +79,27 @@ public abstract class GenFromBarCode implements Parcelable {
                 ", def=" + def +
                 ", type=" + type +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeInt(this.hp);
+        dest.writeInt(this.atk);
+        dest.writeInt(this.def);
+        dest.writeInt(this.type);
+    }
+
+    protected GenFromBarCode(Parcel in) {
+        this.id = in.readInt();
+        this.hp = in.readInt();
+        this.atk = in.readInt();
+        this.def = in.readInt();
+        this.type = in.readInt();
     }
 }

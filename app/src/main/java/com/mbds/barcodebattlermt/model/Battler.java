@@ -7,7 +7,6 @@ import android.os.Parcel;
  * Created by Fred on 25/10/2017.
  */
 
-@SuppressLint("ParcelCreator")
 public class Battler extends GenFromBarCode {
 
     private int level = 1;
@@ -39,22 +38,6 @@ public class Battler extends GenFromBarCode {
                 '}';
     }
 
-    public Battler(Parcel source) {
-        super(source);
-        level = source.readInt();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        super.writeToParcel(dest, flags);
-        dest.writeInt(level);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
     public int getLvlHp() {
         return (int)(getHp()+ getHp()*level*0.1);
     }
@@ -67,4 +50,31 @@ public class Battler extends GenFromBarCode {
         return (int)(getDef()+ getDef()*level*0.1);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeInt(this.level);
+    }
+
+    public Battler(Parcel in) {
+        super(in);
+        this.level = in.readInt();
+    }
+
+    public static final Creator<Battler> CREATOR = new Creator<Battler>() {
+        @Override
+        public Battler createFromParcel(Parcel source) {
+            return new Battler(source);
+        }
+
+        @Override
+        public Battler[] newArray(int size) {
+            return new Battler[size];
+        }
+    };
 }
