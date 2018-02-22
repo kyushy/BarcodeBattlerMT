@@ -109,7 +109,7 @@ public class ResultFragment extends Fragment {
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = BattleListFragment.newInstance("", "");
+                Fragment fragment = BattleListFragment.newInstance("FIGHT", "");
                 ((FightActivity) getActivity()).changeFragment(fragment);
             }
         });

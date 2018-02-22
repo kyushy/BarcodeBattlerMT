@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.activities.FightActivity;
 import com.mbds.barcodebattlermt.activities.HelperActivity;
+import com.mbds.barcodebattlermt.controler.Controler;
 import com.mbds.barcodebattlermt.model.Battler;
 
 import java.util.Random;
@@ -106,6 +107,14 @@ public class FightFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_fight, container, false);
     }
 
+    public Battler randomMob(int lvl){
+        Random r = new Random();
+        int i = r.nextInt(10000000 - 1000000) + 1000000;
+        Battler b =(Battler)Controler.generate(i+"0");
+                b.setLevel(lvl);
+        return b;
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         atk = (Button) view.findViewById(R.id.atk);
@@ -122,7 +131,9 @@ public class FightFragment extends Fragment {
         dmge = (TextView) view.findViewById(R.id.dmg2);
 
         mine = ((HelperActivity) getActivity()).getHelper().getBattler(mParam1);
-        bad = ((HelperActivity) getActivity()).getHelper().getBattler(mParam1);
+
+        bad = randomMob(mine.getLevel());
+
         int id = getResources().getIdentifier("sprite_" + (mine.getType() + 1), "drawable", "com.mbds.barcodebattlermt");
         ally.setImageResource(id);
         int id2 = getResources().getIdentifier("sprite_" + (bad.getType() + 1), "drawable", "com.mbds.barcodebattlermt");
@@ -160,44 +171,90 @@ public class FightFragment extends Fragment {
 
     public void fight(String action) {
         String actionBot = decision();
-        int atka = new Random().nextInt(mine.getLvlAtk());
-        int defa = new Random().nextInt(mine.getLvlDef());
-        int atke = new Random().nextInt(bad.getLvlAtk());
-        int defe = new Random().nextInt(bad.getLvlDef());
+        final int atka = new Random().nextInt(mine.getLvlAtk()+1);
+        final int defa = new Random().nextInt(mine.getLvlDef()+1);
+        final int atke = new Random().nextInt(bad.getLvlAtk()+1);
+        final int defe = new Random().nextInt(bad.getLvlDef()+1);
         Animation animation;
         Animation animation2;
         AnimationSet s;
-
+        disableButton();
         switch (action) {
             case "atk":
                 switch (actionBot) {
                     case "atk":
                         animation = new TranslateAnimation(0, 200,0, -150);
                         animation.setDuration(500);
+                        animation.setAnimationListener(
+                                new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+                                        Animation animation2 = new TranslateAnimation(0, -200,0, 150);
+                                        animation2.setDuration(500);
+                                        enemy.startAnimation(animation2);
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+
+                                        neutre(atka, defa, atke, defe);
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                }
+                        );
                         ally.startAnimation(animation);
-                        animation2 = new TranslateAnimation(0, -200,0, 150);
-                        animation2.setDuration(500);
-                        enemy.startAnimation(animation2);
-                        neutre(atka, defa, atke, defe);
+
                         break;
                     case "rpt":
                         animation = new TranslateAnimation(0, 200,0, -150);
                         animation.setDuration(500);
+                        animation.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+                                Animation animation2 = new TranslateAnimation(0, -400,0, 300);
+                                animation2.setDuration(500);
+                                animation2.setStartOffset(500);
+                                enemy.startAnimation(animation2);
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                deffective(atka, defa, atke);
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        });
                         ally.startAnimation(animation);
 
-                        animation2 = new TranslateAnimation(0, -400,0, 300);
-                        animation2.setDuration(500);
-                        animation2.setStartOffset(500);
-                        enemy.startAnimation(animation2);
-                        deffective(atka, defa, atke);
                         break;
                     case "spl":
-                        s = splAnim();
                         animation = new TranslateAnimation(0, 400,0, -300);
                         animation.setDuration(500);
+                        animation.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+                                enemy.startAnimation(splAnim());
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+
+                                effective(atka, atke, defe);
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        });
                         ally.startAnimation(animation);
-                        enemy.startAnimation(s);
-                        effective(atka, atke, defe);
                         break;
                 }
                 break;
@@ -208,20 +265,54 @@ public class FightFragment extends Fragment {
                         animation = new TranslateAnimation(0, 400,0, -300);
                         animation.setStartOffset(500);
                         animation.setDuration(500);
+                        animation.setAnimationListener(new Animation.AnimationListener() {
+                                                           @Override
+                                                           public void onAnimationStart(Animation animation) {
+                                                               //anim atk
+                                                               Animation animation2 = new TranslateAnimation(0, -200,0, 150);
+                                                               animation2.setDuration(500);
+                                                               enemy.startAnimation(animation2);
+                                                           }
+
+                                                           @Override
+                                                           public void onAnimationEnd(Animation animation) {
+                                                               effective(atka, atke, defe);
+                                                           }
+
+                                                           @Override
+                                                           public void onAnimationRepeat(Animation animation) {
+
+                                                           }
+                                                       }
+
+                        );
                         ally.startAnimation(animation);
-                        //anim atk
-                        animation2 = new TranslateAnimation(0, -200,0, 150);
-                        animation2.setDuration(500);
-                        enemy.startAnimation(animation2);
-                        effective(atka, atke, defe);
                         break;
                     case "rpt":
                         neutre(0, defa, 0, defe);
                         break;
                     case "spl":
                         s = splAnim();
+                        s.setAnimationListener(
+                                new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        deffective(atka, defa, atke);
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                }
+                        );
                         enemy.startAnimation(s);
-                        deffective(atka, defa, atke);
+
                         break;
                 }
 
@@ -230,22 +321,71 @@ public class FightFragment extends Fragment {
                 switch (actionBot) {
                     case "atk":
                         s = splAnim();
+                        s.setAnimationListener(
+                                new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+                                        Animation animation2 = new TranslateAnimation(0, -200,0, 150);
+                                        animation2.setDuration(500);
+                                        enemy.startAnimation(animation2);
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        deffective(atka, defa, atke);
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                }
+                        );
                         ally.startAnimation(s);
-                        animation2 = new TranslateAnimation(0, -200,0, 150);
-                        animation2.setDuration(500);
-                        enemy.startAnimation(animation2);
-                        deffective(atka, defa, atke);
+
                         break;
                     case "rpt":
                         s = splAnim();
+                        s.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                effective(atka, atke, defe);
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        });
                         ally.startAnimation(s);
-                        effective(atka, atke, defe);
                         break;
                     case "spl":
                         s = splAnim();
+                        s.setAnimationListener(
+                                new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+                                        enemy.startAnimation(splAnim());
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        neutre(atka, defa, atke, defe);
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                }
+                        );
                         ally.startAnimation(s);
-                        enemy.startAnimation(s);
-                        neutre(atka, defa, atke, defe);
+
                         break;
                 }
 
@@ -272,8 +412,10 @@ public class FightFragment extends Fragment {
         // Damage animation
         dmg(dmge, vale, " !!!");
 
-        if (rese > 0)
+        if (rese > 0) {
             hpe.setProgress(rese);
+            enableButton();
+        }
         else {
             hpe.setProgress(0);
             finish();
@@ -287,12 +429,28 @@ public class FightFragment extends Fragment {
         // Damage animation
         dmg(dmga, vala, " !!!");
 
-        if (resa > 0)
+        if (resa > 0) {
             hpa.setProgress(resa);
+            enableButton();
+        }
         else {
             hpa.setProgress(0);
             finish();
         }
+    }
+
+    private void disableButton(){
+        atk.setEnabled(false);
+        riposte.setEnabled(false);
+        special.setEnabled(false);
+        potion.setEnabled(false);
+    }
+
+    private void enableButton(){
+        atk.setEnabled(true);
+        riposte.setEnabled(true);
+        special.setEnabled(true);
+        potion.setEnabled(true);
     }
 
     private void dmg(TextView txt, int val, String bonus){
@@ -331,18 +489,11 @@ public class FightFragment extends Fragment {
         if (resa < 0 || rese < 0) {
             finish();
         }
+        else
+            enableButton();
     }
 
     private void finish() {
-        atk.setEnabled(false);
-        riposte.setEnabled(false);
-        special.setEnabled(false);
-        potion.setEnabled(false);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         if(hpa.getProgress() > 0 ){
             mine.setLevel(mine.getLevel()+1);
             ((HelperActivity) getActivity()).getHelper().updateBattler(mine);

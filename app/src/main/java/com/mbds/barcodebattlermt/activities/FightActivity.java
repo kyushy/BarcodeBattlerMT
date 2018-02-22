@@ -21,9 +21,6 @@ public class FightActivity extends HelperActivity {
         manager = FightActivity.this.getFragmentManager();
         Fragment fragment = BattleListFragment.newInstance("FIGHT", "");
 
-        /// Temp for test
-
-       // Fragment fragment = FightFragment.newInstance("", "");
         manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
 
     }
