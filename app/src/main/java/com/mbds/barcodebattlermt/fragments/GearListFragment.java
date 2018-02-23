@@ -106,7 +106,8 @@ public class GearListFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        battler = ((HelperActivity) getActivity()).getHelper().getBattler(mParam1);
+        if(mParam1 != "")
+            battler = ((HelperActivity) getActivity()).getHelper().getBattler(mParam1);
 
         gearsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -115,21 +116,24 @@ public class GearListFragment extends Fragment {
                 if(mParam2 == "HP") {
                     HpItem entry = (HpItem) parent.getItemAtPosition(position);
                     battler.setHpItem(entry);
-                    Fragment fragment = BattlerDetailFragment.newInstance(""+entry.getId(), "");
+                    ((HelperActivity) getActivity()).getHelper().updateBattler(battler);
+                    Fragment fragment = BattlerDetailFragment.newInstance(""+battler.getId(), "");
                     ((GameActivity) getActivity()).changeFragment(fragment);
                 }
 
                 if(mParam2 == "ATK") {
                     AtkItem entry = (AtkItem) parent.getItemAtPosition(position);
                     battler.setAtkItem(entry);
-                    Fragment fragment = BattlerDetailFragment.newInstance(""+entry.getId(), "");
+                    ((HelperActivity) getActivity()).getHelper().updateBattler(battler);
+                    Fragment fragment = BattlerDetailFragment.newInstance(""+battler.getId(), "");
                     ((GameActivity) getActivity()).changeFragment(fragment);
                 }
 
                 if(mParam2 == "DEF") {
                     DefItem entry = (DefItem) parent.getItemAtPosition(position);
                     battler.setDefItem(entry);
-                    Fragment fragment = BattlerDetailFragment.newInstance(""+entry.getId(), "");
+                    ((HelperActivity) getActivity()).getHelper().updateBattler(battler);
+                    Fragment fragment = BattlerDetailFragment.newInstance(""+battler.getId(), "");
                     ((GameActivity) getActivity()).changeFragment(fragment);
                 }
             }
