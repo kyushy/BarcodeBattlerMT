@@ -85,7 +85,7 @@ public class Helper extends SQLiteOpenHelper {
         db.delete("Potions", null, null);
     }
 
-    public void addBattler(Battler b) {
+    public long addBattler(Battler b) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Hp", b.getHp());
@@ -93,7 +93,7 @@ public class Helper extends SQLiteOpenHelper {
         values.put("Def", b.getDef());
         values.put("Type", b.getType());
         values.put("Level", b.getLevel());
-        db.insert("Battlers", null, values);
+        return db.insert("Battlers", null, values);
         //db.close();
     }
 

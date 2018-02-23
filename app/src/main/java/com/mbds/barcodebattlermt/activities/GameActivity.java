@@ -16,6 +16,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.controler.Controler;
 import com.mbds.barcodebattlermt.fragments.BattleListFragment;
+import com.mbds.barcodebattlermt.fragments.BattlerDetailFragment;
 import com.mbds.barcodebattlermt.fragments.ChoiceFightFragment;
 import com.mbds.barcodebattlermt.fragments.GearListFragment;
 import com.mbds.barcodebattlermt.fragments.HomeFragment;
@@ -98,7 +99,9 @@ public class GameActivity extends HelperActivity {
                     GenFromBarCode g = Controler.generate(bar);
                     Log.v("Test", g.toString());
                     if(g instanceof Battler) {
-                        getHelper().addBattler((Battler)g);
+                        long res = getHelper().addBattler((Battler)g);
+                        Fragment fragment = BattlerDetailFragment.newInstance(""+res, "");
+                        changeFragment(fragment);
                     }
                     else if (g instanceof HpItem) {
                         getHelper().addHpItem((HpItem)g);
