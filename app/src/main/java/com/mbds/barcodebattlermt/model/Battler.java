@@ -11,6 +11,10 @@ public class Battler extends GenFromBarCode {
 
     private int level = 1;
 
+    private HpItem hpItem;
+    private AtkItem atkItem;
+    private DefItem defItem;
+
     public Battler() {
     }
 
@@ -28,6 +32,30 @@ public class Battler extends GenFromBarCode {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public HpItem getHpItem() {
+        return hpItem;
+    }
+
+    public void setHpItem(HpItem hpItem) {
+        this.hpItem = hpItem;
+    }
+
+    public AtkItem getAtkItem() {
+        return atkItem;
+    }
+
+    public void setAtkItem(AtkItem atkItem) {
+        this.atkItem = atkItem;
+    }
+
+    public DefItem getDefItem() {
+        return defItem;
+    }
+
+    public void setDefItem(DefItem defItem) {
+        this.defItem = defItem;
     }
 
     @Override

@@ -119,4 +119,8 @@ public class GameActivity extends HelperActivity {
         }
     }
 
+    public void changeFragment(Fragment fragment){
+        manager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+    }
+
 }

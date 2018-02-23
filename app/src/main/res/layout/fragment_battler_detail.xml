@@ -1,0 +1,428 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mbds.barcodebattlermt.fragments.BattlerDetailFragment">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:background="@drawable/row_battlershape">
+
+
+            <ImageView
+                android:id="@+id/imageView3_d"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@+id/atk_battler_d"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/hp_icon_d"
+                app:srcCompat="@drawable/sprite_1" />
+
+            <ImageView
+                android:id="@+id/hp_icon_d"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/hp_battler_d"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/imageView3_d"
+                android:src="@drawable/hp_icon" />
+
+            <TextView
+                android:id="@+id/hp_battler_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/hp_icon_d"
+                android:text="HP"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/lvl_row_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/atk_battler_d"
+                android:layout_alignStart="@+id/def_icon_d"
+                android:text="LVL"
+                android:textColor="@color/White"
+                android:textSize="25sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/lvl_battler_row_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/lvl_row_d"
+                android:layout_alignBottom="@+id/lvl_row_d"
+                android:layout_alignStart="@+id/def_battler_d"
+                android:text="LVL"
+                android:textColor="@color/White"
+                android:textSize="25sp"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/atk_icon_d"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignStart="@+id/hp_icon_d"
+                android:layout_below="@+id/hp_battler_d"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/atk_icon" />
+
+            <TextView
+                android:id="@+id/atk_battler_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/hp_battler_d"
+                android:layout_below="@id/hp_battler_d"
+                android:layout_marginTop="13dp"
+                android:text="ATK"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/def_icon_d"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/atk_icon_d"
+                android:layout_marginStart="100dp"
+                android:layout_toEndOf="@+id/atk_icon_d"
+                android:src="@drawable/def_icon" />
+
+            <TextView
+                android:id="@+id/def_battler_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/def_icon_d"
+                android:layout_marginStart="11dp"
+                android:layout_toEndOf="@+id/lvl_row_d"
+                android:text="DEF"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-------- EQUIPEMENT --------"
+            android:textSize="18sp"
+            android:textAlignment="center"/>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:background="@drawable/row_battlershape"
+            android:id="@+id/item_hp_slot">
+
+
+            <ImageView
+                android:id="@+id/imageView3_i1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@+id/atk_battler_i1"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/hp_icon_i1"
+                app:srcCompat="@drawable/sprite_1" />
+
+            <ImageView
+                android:id="@+id/hp_icon_i1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/hp_battler_i1"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/imageView3_i1"
+                android:src="@drawable/hp_icon" />
+
+            <TextView
+                android:id="@+id/hp_battler_i1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/hp_icon_i1"
+                android:text="HP"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/lvl_row_i1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/atk_battler_i1"
+                android:layout_alignStart="@+id/def_icon_i1"
+                android:text="LVL"
+                android:textColor="@color/White"
+                android:textSize="25sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/lvl_battler_row_i1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/lvl_row_i1"
+                android:layout_alignBottom="@+id/lvl_row_i1"
+                android:layout_alignStart="@+id/def_battler_i1"
+                android:text="LVL"
+                android:textColor="@color/White"
+                android:textSize="25sp"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/atk_icon_i1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignStart="@+id/hp_icon_i1"
+                android:layout_below="@+id/hp_battler_i1"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/atk_icon" />
+
+            <TextView
+                android:id="@+id/atk_battler_i1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/hp_battler_i1"
+                android:layout_below="@id/hp_battler_i1"
+                android:layout_marginTop="13dp"
+                android:text="ATK"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/def_icon_i1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/atk_icon_i1"
+                android:layout_marginStart="100dp"
+                android:layout_toEndOf="@+id/atk_icon_i1"
+                android:src="@drawable/def_icon" />
+
+            <TextView
+                android:id="@+id/def_battler_i1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/def_icon_i1"
+                android:layout_marginStart="11dp"
+                android:layout_toEndOf="@+id/lvl_row_i1"
+                android:text="DEF"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:background="@drawable/row_battlershape"
+            android:id="@+id/item_atk_slot">
+
+
+            <ImageView
+                android:id="@+id/imageView3_i2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@+id/atk_battler_i2"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/hp_icon_i2"
+                app:srcCompat="@drawable/sprite_1" />
+
+            <ImageView
+                android:id="@+id/hp_icon_i2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/hp_battler_i2"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/imageView3_i2"
+                android:src="@drawable/hp_icon" />
+
+            <TextView
+                android:id="@+id/hp_battler_i2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/hp_icon_i2"
+                android:text="HP"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/lvl_row_i2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/atk_battler_i2"
+                android:layout_alignStart="@+id/def_icon_i2"
+                android:text="LVL"
+                android:textColor="@color/White"
+                android:textSize="25sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/lvl_battler_row_i2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/lvl_row_i2"
+                android:layout_alignBottom="@+id/lvl_row_i2"
+                android:layout_alignStart="@+id/def_battler_i2"
+                android:text="LVL"
+                android:textColor="@color/White"
+                android:textSize="25sp"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/atk_icon_i2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignStart="@+id/hp_icon_i2"
+                android:layout_below="@+id/hp_battler_i2"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/atk_icon" />
+
+            <TextView
+                android:id="@+id/atk_battler_i2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/hp_battler_i2"
+                android:layout_below="@id/hp_battler_i2"
+                android:layout_marginTop="13dp"
+                android:text="ATK"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/def_icon_i2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/atk_icon_i2"
+                android:layout_marginStart="100dp"
+                android:layout_toEndOf="@+id/atk_icon_i2"
+                android:src="@drawable/def_icon" />
+
+            <TextView
+                android:id="@+id/def_battler_i2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/def_icon_i2"
+                android:layout_marginStart="11dp"
+                android:layout_toEndOf="@+id/lvl_row_i2"
+                android:text="DEF"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:background="@drawable/row_battlershape"
+            android:id="@+id/item_def_slot">
+
+
+            <ImageView
+                android:id="@+id/imageView3_i3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@+id/atk_battler_i3"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/hp_icon_i3"
+                app:srcCompat="@drawable/sprite_1" />
+
+            <ImageView
+                android:id="@+id/hp_icon_i3"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/hp_battler_i3"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/imageView3_i3"
+                android:src="@drawable/hp_icon" />
+
+            <TextView
+                android:id="@+id/hp_battler_i3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/hp_icon_i3"
+                android:text="HP"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/lvl_row_i3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/atk_battler_i3"
+                android:layout_alignStart="@+id/def_icon_i3"
+                android:text="LVL"
+                android:textColor="@color/White"
+                android:textSize="25sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/lvl_battler_row_i3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/lvl_row_i3"
+                android:layout_alignBottom="@+id/lvl_row_i3"
+                android:layout_alignStart="@+id/def_battler_i3"
+                android:text="LVL"
+                android:textColor="@color/White"
+                android:textSize="25sp"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/atk_icon_i3"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignStart="@+id/hp_icon_i3"
+                android:layout_below="@+id/hp_battler_i3"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/atk_icon" />
+
+            <TextView
+                android:id="@+id/atk_battler_i3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/hp_battler_i3"
+                android:layout_below="@id/hp_battler_i3"
+                android:layout_marginTop="13dp"
+                android:text="ATK"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/def_icon_i3"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignTop="@+id/atk_icon_i3"
+                android:layout_marginStart="100dp"
+                android:layout_toEndOf="@+id/atk_icon_i3"
+                android:src="@drawable/def_icon" />
+
+            <TextView
+                android:id="@+id/def_battler_i3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/def_icon_i3"
+                android:layout_marginStart="11dp"
+                android:layout_toEndOf="@+id/lvl_row_i3"
+                android:text="DEF"
+                android:textColor="@color/White"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

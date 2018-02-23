@@ -9,32 +9,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.mbds.barcodebattlermt.R;
+import com.mbds.barcodebattlermt.activities.FightActivity;
 import com.mbds.barcodebattlermt.activities.GameActivity;
 import com.mbds.barcodebattlermt.activities.HelperActivity;
-import com.mbds.barcodebattlermt.bluetooth.BluetoothActivity;
-import com.mbds.barcodebattlermt.bluetooth.BluetoothChatFragment;
 import com.mbds.barcodebattlermt.controler.BattlerAdapter;
-import com.mbds.barcodebattlermt.model.AtkItem;
 import com.mbds.barcodebattlermt.model.Battler;
-import com.mbds.barcodebattlermt.model.DefItem;
-import com.mbds.barcodebattlermt.model.GenFromBarCode;
-import com.mbds.barcodebattlermt.model.HpItem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link GearListFragment.OnFragmentInteractionListener} interface
+ * {@link BattlerDetailFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link GearListFragment#newInstance} factory method to
+ * Use the {@link BattlerDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GearListFragment extends Fragment {
+public class BattlerDetailFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -44,13 +39,25 @@ public class GearListFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private ListView gearsListView;
-    private List<GenFromBarCode> gears;
     private Battler battler;
+
+    private TextView hpView;
+    private TextView atkView;
+    private TextView defView;
+    private TextView lvlView;
+    private TextView lvlCont;
+
+    private TextView hpItemView;
+    private TextView atkItemView;
+    private TextView defItemView;
+
+    private RelativeLayout itemHp_slot;
+    private RelativeLayout itemAtk_slot;
+    private RelativeLayout itemDef_slot;
 
     private OnFragmentInteractionListener mListener;
 
-    public GearListFragment() {
+    public BattlerDetailFragment() {
         // Required empty public constructor
     }
 
@@ -60,11 +67,11 @@ public class GearListFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GearListFragment.
+     * @return A new instance of fragment BattlerDetailFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GearListFragment newInstance(String param1, String param2) {
-        GearListFragment fragment = new GearListFragment();
+    public static BattlerDetailFragment newInstance(String param1, String param2) {
+        BattlerDetailFragment fragment = new BattlerDetailFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -84,23 +91,10 @@ public class GearListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_battler_detail, container, false);
+
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_gear_list, container, false);
-        gearsListView = (ListView) view.findViewById(R.id.gears_list);
-
-        gears = new ArrayList<>();
-        if(mParam2 == "")
-            gears = ((GameActivity) getActivity()).getHelper().getGears();
-        if(mParam2 == "HP")
-            gears = ((GameActivity) getActivity()).getHelper().getHpItems();
-        if(mParam2 == "ATK")
-            gears = ((GameActivity) getActivity()).getHelper().getAtkItems();
-        if(mParam2 == "DEF")
-            gears = ((GameActivity) getActivity()).getHelper().getDefItems();
-
-        BattlerAdapter adapter = new BattlerAdapter(getActivity(), gears, getResources());
-        gearsListView.setAdapter(adapter);
-
         return view;
     }
 
@@ -108,32 +102,63 @@ public class GearListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         battler = ((HelperActivity) getActivity()).getHelper().getBattler(mParam1);
 
-        gearsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        itemHp_slot = (RelativeLayout) view.findViewById(R.id.item_hp_slot);
+        itemAtk_slot = (RelativeLayout) view.findViewById(R.id.item_atk_slot);
+        itemDef_slot = (RelativeLayout) view.findViewById(R.id.item_def_slot);
+
+        hpView = (TextView) view.findViewById(R.id.hp_battler_d);
+        atkView = (TextView) view.findViewById(R.id.atk_battler_d);
+        defView = (TextView) view.findViewById(R.id.def_battler_d);
+        lvlCont = (TextView) view.findViewById(R.id.lvl_row_d);
+        lvlView = (TextView) view.findViewById(R.id.lvl_battler_row_d);
+
+        hpView.setText(String.valueOf(battler.getHp()));
+        atkView.setText(String.valueOf(battler.getAtk()));
+        defView.setText(String.valueOf(battler.getDef()));
+        lvlView.setText(String.valueOf(battler.getLevel()));
+
+        lvlView.setVisibility(View.VISIBLE);
+        lvlCont.setVisibility(View.VISIBLE);
+
+        if(battler.getHpItem() != null){
+            hpItemView = (TextView) view.findViewById(R.id.hp_battler_i1);
+            hpItemView.setText(String.valueOf(battler.getHpItem().getHp()));
+        }
+
+        if(battler.getAtkItem() != null){
+            atkItemView = (TextView) view.findViewById(R.id.atk_battler_i2);
+            atkItemView.setText(String.valueOf(battler.getHpItem().getHp()));
+        }
+
+        if(battler.getDefItem() != null){
+            defItemView = (TextView) view.findViewById(R.id.def_battler_i3);
+            defItemView.setText(String.valueOf(battler.getHpItem().getHp()));
+        }
+
+        itemHp_slot.setOnClickListener(new AdapterView.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-                if(mParam2 == "HP") {
-                    HpItem entry = (HpItem) parent.getItemAtPosition(position);
-                    battler.setHpItem(entry);
-                    Fragment fragment = BattlerDetailFragment.newInstance(""+entry.getId(), "");
-                    ((GameActivity) getActivity()).changeFragment(fragment);
-                }
-
-                if(mParam2 == "ATK") {
-                    AtkItem entry = (AtkItem) parent.getItemAtPosition(position);
-                    battler.setAtkItem(entry);
-                    Fragment fragment = BattlerDetailFragment.newInstance(""+entry.getId(), "");
-                    ((GameActivity) getActivity()).changeFragment(fragment);
-                }
-
-                if(mParam2 == "DEF") {
-                    DefItem entry = (DefItem) parent.getItemAtPosition(position);
-                    battler.setDefItem(entry);
-                    Fragment fragment = BattlerDetailFragment.newInstance(""+entry.getId(), "");
-                    ((GameActivity) getActivity()).changeFragment(fragment);
-                }
+            public void onClick(View view) {
+                Fragment fragment = GearListFragment.newInstance(""+battler.getId(), "HP");
+                ((GameActivity) getActivity()).changeFragment(fragment);
             }
         });
+
+        itemAtk_slot.setOnClickListener(new AdapterView.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = GearListFragment.newInstance(""+battler.getId(), "ATK");
+                ((GameActivity) getActivity()).changeFragment(fragment);
+            }
+        });
+
+        itemDef_slot.setOnClickListener(new AdapterView.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = GearListFragment.newInstance(""+battler.getId(), "DEF");
+                ((GameActivity) getActivity()).changeFragment(fragment);
+            }
+        });
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

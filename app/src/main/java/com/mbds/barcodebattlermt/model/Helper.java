@@ -190,8 +190,8 @@ public class Helper extends SQLiteOpenHelper {
 
     }
 
-    public List<HpItem> getHpItems() {
-        List<HpItem> hpItems = new ArrayList<>();
+    public List<GenFromBarCode> getHpItems() {
+        List<GenFromBarCode> hpItems = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         //db.query ou rawQuery -> renvoie un Cursor, sorte de vue de résultats de la base de donnée
         Cursor cursor = db.rawQuery("SELECT * FROM HpItems;", null);
@@ -214,8 +214,8 @@ public class Helper extends SQLiteOpenHelper {
         return hpItems;
     }
 
-    public List<AtkItem> getAtkItems() {
-        List<AtkItem> atkItems = new ArrayList<>();
+    public List<GenFromBarCode> getAtkItems() {
+        List<GenFromBarCode> atkItems = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         //db.query ou rawQuery -> renvoie un Cursor, sorte de vue de résultats de la base de donnée
         Cursor cursor = db.rawQuery("SELECT * FROM AtkItems;", null);
@@ -238,8 +238,8 @@ public class Helper extends SQLiteOpenHelper {
         return atkItems;
     }
 
-    public List<DefItem> getDefItems() {
-        List<DefItem> defItems = new ArrayList<>();
+    public List<GenFromBarCode> getDefItems() {
+        List<GenFromBarCode> defItems = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         //db.query ou rawQuery -> renvoie un Cursor, sorte de vue de résultats de la base de donnée
         Cursor cursor = db.rawQuery("SELECT * FROM DefItems;", null);

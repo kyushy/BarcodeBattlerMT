@@ -114,7 +114,17 @@ public class BattleListFragment extends Fragment {
             });
         }
         else{
-
+            battlersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+                    //Fragment fragment = BattleListFragment.newInstance("", "");
+                    //((FightActivity) getActivity()).changeFragment(fragment);
+                    Battler entry = (Battler) parent.getItemAtPosition(position);
+                    Fragment fragment = BattlerDetailFragment.newInstance(""+entry.getId(), "");
+                    ((GameActivity) getActivity()).changeFragment(fragment);
+                }
+            });
         }
 
         return view;
