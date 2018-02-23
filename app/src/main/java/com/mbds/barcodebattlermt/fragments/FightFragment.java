@@ -44,7 +44,7 @@ public class FightFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-    private String mParam2;
+    private Battler mParam2;
 
     private Button atk;
     private Button riposte;
@@ -82,11 +82,11 @@ public class FightFragment extends Fragment {
      * @return A new instance of fragment FightFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FightFragment newInstance(String param1, String param2) {
+    public static FightFragment newInstance(String param1, Battler param2) {
         FightFragment fragment = new FightFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -96,7 +96,7 @@ public class FightFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam2 = getArguments().getParcelable(ARG_PARAM2);
         }
     }
 
@@ -130,7 +130,7 @@ public class FightFragment extends Fragment {
         dmga = (TextView) view.findViewById(R.id.dmg1);
         dmge = (TextView) view.findViewById(R.id.dmg2);
 
-        mine = ((HelperActivity) getActivity()).getHelper().getBattler(mParam1);
+        mine = mParam2;
 
         bad = randomMob(mine.getLevel());
 
