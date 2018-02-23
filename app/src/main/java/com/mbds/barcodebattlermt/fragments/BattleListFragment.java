@@ -97,7 +97,7 @@ public class BattleListFragment extends Fragment {
                     //Fragment fragment = BattleListFragment.newInstance("", "");
                     //((FightActivity) getActivity()).changeFragment(fragment);
                     Battler entry = (Battler) parent.getItemAtPosition(position);
-                    Fragment fragment = FightFragment.newInstance(""+entry.getId(), "");
+                    Fragment fragment = FightFragment.newInstance(""+entry.getId(), entry);
                     ((FightActivity) getActivity()).changeFragment(fragment);
                 }
             });
