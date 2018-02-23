@@ -41,6 +41,7 @@ public class BattlerDetailFragment extends Fragment {
 
     private Battler battler;
 
+    private ImageView imgView;
     private TextView hpView;
     private TextView atkView;
     private TextView defView;
@@ -106,6 +107,9 @@ public class BattlerDetailFragment extends Fragment {
         itemAtk_slot = (RelativeLayout) view.findViewById(R.id.item_atk_slot);
         itemDef_slot = (RelativeLayout) view.findViewById(R.id.item_def_slot);
 
+        imgView = (ImageView) view.findViewById(R.id.imageView3_d);
+        int id = getResources().getIdentifier("sprite_" + (battler.getType() + 1), "drawable", "com.mbds.barcodebattlermt");
+        imgView.setImageResource(id);
         hpView = (TextView) view.findViewById(R.id.hp_battler_d);
         atkView = (TextView) view.findViewById(R.id.atk_battler_d);
         defView = (TextView) view.findViewById(R.id.def_battler_d);
