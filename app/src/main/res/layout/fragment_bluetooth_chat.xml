@@ -21,21 +21,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/secure_connect_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/secure_connect_scan"
             android:drawableStart="@drawable/ic_action_device_access_bluetooth_searching"
             android:text="@string/secure_connect" />
 
         <Button
+            android:id="@+id/insecure_connect_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/insecure_connect_scan"
             android:drawableStart="@drawable/ic_action_device_access_bluetooth_searching"
             android:text="@string/insecure_connect" />
 
@@ -47,31 +47,129 @@
             android:text="@string/discoverable" />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/in"
+    <RelativeLayout
+        android:id="@+id/monster_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <EditText
-            android:id="@+id/edit_text_out"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:visibility="invisible">
 
         <Button
-            android:id="@+id/button_send"
+            android:id="@+id/riposte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/send" />
-    </LinearLayout>
+            android:layout_alignBaseline="@+id/atk"
+            android:layout_alignBottom="@+id/atk"
+            android:layout_alignStart="@+id/imageView2"
+            android:layout_marginStart="18dp"
+            android:layout_weight="1"
+            android:text="Riposte" />
 
+        <Button
+            android:id="@+id/atk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/special"
+            android:layout_below="@+id/imageView"
+            android:layout_marginTop="36dp"
+            android:layout_weight="1"
+            android:text="Attaque" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageView2"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/sprite_1" />
+
+        <Button
+            android:id="@+id/potion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/special"
+            android:layout_alignBottom="@+id/special"
+            android:layout_alignStart="@+id/riposte"
+            android:layout_weight="1"
+            android:text="Potion" />
+
+        <Button
+            android:id="@+id/special"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_below="@+id/riposte"
+            android:layout_marginEnd="22dp"
+            android:layout_marginTop="38dp"
+            android:layout_weight="1"
+            android:text="Special" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="19dp"
+            android:layout_marginTop="51dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/sprite_3" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_alignStart="@+id/imageView"
+            android:indeterminate="false"
+            android:progress="100"
+            android:progressTint="@color/Green" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/imageView2"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/imageView2"
+            android:layout_marginTop="34dp"
+            android:progress="100"
+            android:progressTint="@color/Green" />
+
+        <TextView
+            android:id="@+id/dmg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progressBar"
+            android:layout_marginEnd="17dp"
+            android:layout_marginTop="56dp"
+            android:layout_toStartOf="@+id/imageView2"
+            android:background="@color/Black"
+            android:ems="10"
+            android:textAlignment="center"
+            android:textColor="@color/Red"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/dmg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/progressBar"
+            android:background="@color/Black"
+            android:ems="10"
+            android:textAlignment="center"
+            android:textColor="@color/Red"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+    </RelativeLayout>
 </LinearLayout>

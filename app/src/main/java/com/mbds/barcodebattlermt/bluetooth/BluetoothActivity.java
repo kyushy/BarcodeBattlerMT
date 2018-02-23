@@ -17,10 +17,13 @@
 
 package com.mbds.barcodebattlermt.bluetooth;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import com.mbds.barcodebattlermt.R;
+import com.mbds.barcodebattlermt.activities.FightActivity;
+import com.mbds.barcodebattlermt.activities.HelperActivity;
+import com.mbds.barcodebattlermt.fragments.BattleListFragment;
 
 /**
  * A simple launcher activity containing a summary sample description, sample log and a custom
@@ -29,20 +32,25 @@ import com.mbds.barcodebattlermt.R;
  * For devices with displays with a width of 720dp or greater, the sample log is always visible,
  * on other devices it's visibility is controlled by an item on the Action Bar.
  */
-public class BluetoothActivity extends FragmentActivity {
+public class BluetoothActivity extends HelperActivity {
 
     public static final String TAG = "BluetoothActivity";
+
+    private FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
         if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            manager = BluetoothActivity.this.getFragmentManager();
 
-            BluetoothChatFragment fragment = new BluetoothChatFragment();
-            transaction.replace(R.id.sample_content_fragment, fragment);
-            transaction.commit();
+            Fragment fragment = BattleListFragment.newInstance("BT", "");
+            manager.beginTransaction().replace(R.id.sample_content_fragment, fragment).commit();
         }
+    }
+
+    public void changeFragment(Fragment fragment){
+        manager.beginTransaction().replace(R.id.sample_content_fragment, fragment).commit();
     }
 }

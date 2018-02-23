@@ -14,6 +14,8 @@ import com.mbds.barcodebattlermt.R;
 import com.mbds.barcodebattlermt.activities.FightActivity;
 import com.mbds.barcodebattlermt.activities.GameActivity;
 import com.mbds.barcodebattlermt.activities.HelperActivity;
+import com.mbds.barcodebattlermt.bluetooth.BluetoothActivity;
+import com.mbds.barcodebattlermt.bluetooth.BluetoothChatFragment;
 import com.mbds.barcodebattlermt.model.Battler;
 import com.mbds.barcodebattlermt.controler.BattlerAdapter;
 import com.mbds.barcodebattlermt.model.GenFromBarCode;
@@ -97,6 +99,17 @@ public class BattleListFragment extends Fragment {
                     Battler entry = (Battler) parent.getItemAtPosition(position);
                     Fragment fragment = FightFragment.newInstance(""+entry.getId(), "");
                     ((FightActivity) getActivity()).changeFragment(fragment);
+                }
+            });
+        }
+        else if(mParam1.equals("BT")){
+            battlersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+                    Battler entry = (Battler) parent.getItemAtPosition(position);
+                    Fragment fragment = BluetoothChatFragment.newInstance(""+entry.getId(), "");
+                    ((BluetoothActivity) getActivity()).changeFragment(fragment);
                 }
             });
         }
